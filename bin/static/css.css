@@ -1,0 +1,422 @@
+body {
+	background-color: #333333;
+    font: Arial, Helvetica, sans-serif;
+	color: white;
+    margin-bottom: 100px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.form-style-9{
+    max-width: 450px;
+    background: GhostWhite; /*#FAFAFA*/
+    padding: 30px;
+    margin: 100px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;
+}
+
+.form-style-9 ul{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+.form-style-9 ul li{
+    display: block;
+    margin-bottom: 10px;
+    min-height: 35px;
+}
+.form-style-9 ul li  .field-style{
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    padding: 8px;
+    outline: none;
+    border: 1px solid #B0CFE0;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+
+}.form-style-9 ul li  .field-style:focus{
+    box-shadow: 0 0 5px #B0CFE0;
+    border:1px solid #B0CFE0;
+}
+.form-style-9 ul li .field-split{
+    width: 49%;
+}
+.form-style-9 ul li .field-full{
+    width: 100%;
+}
+.form-style-9 ul li input.align-left{
+    float:left;
+}
+.form-style-9 ul li input.align-right{
+    float:right;
+}
+.form-style-9 ul li textarea{
+    width: 100%;
+    height: 100px;
+}
+
+.form-style-9 ul li input[type="button"], 
+.form-style-9 ul li input[type="submit"] {
+    -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    box-shadow: inset 0px 1px 0px 0px #3985B1;
+    background-color: #216288;
+    border: 1px solid #17445E;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    text-decoration: none;
+    font: 12px Arial, Helvetica, sans-serif;
+    width: 220px;
+}
+.form-style-9 ul li input[type="button"]:hover, 
+.form-style-9 ul li input[type="submit"]:hover {
+/*     background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%); */
+/*     background-color: #28739E; */
+	background-color: black;
+}
+
+.content { 
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+h1 {
+	color: rgb(7, 67, 102);
+    text-align: center;
+}
+h2 {
+	color: rgb(7, 67, 102);
+    text-align: center;
+}
+
+h3 {
+    color: rgb(7, 67, 102);;
+    text-align: left;
+}
+
+h4 {
+    color: rgb(7, 67, 102);;
+    text-align: left;
+}
+
+input {
+	background-color: black;
+	color: white;
+	width: 60%;
+}
+
+#resultTable {
+	max-width: fit-content;
+    background: GhostWhite;
+    padding: 30px;
+    margin: 100px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;
+}
+
+
+#error {
+	color: red;
+	text-align: center;
+	max-width: 450px;
+    background: GhostWhite;
+    padding: 30px;
+    margin: 100px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;
+}
+
+td {
+	color: #3985B1;
+	text-align: center;
+	font-weight: bold;
+	width: fit-content;
+    padding: 10px;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 3px solid #305A72;
+}
+
+tr {
+	width: 450px;
+}
+
+.top {
+	position: fixed; 
+    top: 0; 
+    width: 80%;
+    height: auto;
+    background-color: GhostWhite;
+/*     background-image: url("images/flowergif.gif"); */
+    box-shadow: inset 0px 1px 0px 0px #3985B1;
+    border-radius: 10px;
+    border: 6px solid #305A72;
+    color: #3985B1;
+    -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    z-index: 1;
+}
+
+.side {
+    position: absolute;
+    width: auto;
+    height: auto;
+    background: GhostWhite;
+    padding: 30px;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;
+    color: #3985B1; 
+}
+
+#buttonInput {
+    -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    box-shadow: inset 0px 1px 0px 0px #3985B1;
+    background-color: #216288;
+    border: 1px solid #17445E;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    text-decoration: none;
+    font: 12px Arial, Helvetica, sans-serif;
+    width: 175px;
+    height: 50px;
+    margin: 15px auto;
+}
+
+#doc {
+   -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    box-shadow: inset 0px 1px 0px 0px #3985B1;
+    background-color: #216288;
+    border: 1px solid #17445E;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    text-decoration: none;
+    font: 12px Arial, Helvetica, sans-serif;
+    width: 175px;
+    height: 50px;
+    margin: 15px auto;
+    margin-left: 25px;
+}
+
+#doc:hover {
+	background-color: black;
+}
+
+#logout {
+    -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    box-shadow: inset 0px 1px 0px 0px #3985B1;
+    background-color: #216288;
+    border: 1px solid #17445E;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    text-decoration: none;
+    font: 12px Arial, Helvetica, sans-serif;
+    width: 175px;
+    height: 50px;
+    margin: 15px auto;    
+    margin-right: 25px;
+}
+
+#logout:hover {
+	background-color: black;
+}
+
+
+#purchaseTable {
+	max-width: 525px;
+    background: GhostWhite;
+    padding: 20px;
+ 
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;
+}
+
+.form-style-purchase{
+    max-width: 450px;
+    background: GhostWhite;
+    padding: 15px;
+    margin: 10px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;  
+}
+
+.form-style-purchase ul li input[type="button"], 
+.form-style-purchase ul li input[type="submit"] {
+    -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    box-shadow: inset 0px 1px 0px 0px #3985B1;
+    background-color: #216288;
+    border: 1px solid #17445E;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    text-decoration: none;
+    font: 12px Arial, Helvetica, sans-serif;
+    width: 220px;
+}
+
+#buy {
+    background-color: #216288;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    text-decoration: none;
+    font: 12px Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+#capitalize {
+	text-transform: capitalize;
+	letter-spacing: 1px;
+}
+
+img {
+	max-height: 150px;
+  	max-width: 150px;
+  	-o-object-fit: contain;
+}
+
+#email {
+	max-height: 150px;
+  	max-width: 150px;
+  	-o-object-fit: contain;
+}
+
+
+#couponResultTable {
+	width: 700px;
+    background: GhostWhite;
+    padding: 5px;
+    margin: 0px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 0px 0px 10px 10px;
+    border-left: 6px solid #305A72;
+    border-right: 6px solid #305A72;
+    border-bottom: 6px solid #305A72;
+}
+
+#couponTd {
+	color: #3985B1;
+	text-align: center;
+	font-weight: bold;
+	width: max-content;
+    padding: 10px;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 3px solid #305A72;
+}
+
+.imgTable {
+    width: 700px;
+    background: GhostWhite;
+    padding: 5px;
+    margin: 0px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px 10px 0px 0px;
+    border-left: 6px solid #305A72; 
+    border-top: 6px solid#305A72;
+    border-right: 6px solid#305A72;
+
+}
+
+#imgTd { 
+	text-align: center;
+	font-weight: bold;
+	width: max-content;
+    padding: 10px;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 3px solid #305A72;  
+}
+
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: red; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+
+#buttonInput:hover {
+	background-color: black;
+}
+
+#tech {
+	width: 200px;
+    background-color: #216288;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    margin-right: 25px;
+    text-decoration: none;
+    font: 12px Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+#tech:hover {
+	background-color: black;
+}
+/* 
+.proper {
+	text-transform: lowercase;
+}
+
+.proper:first-letter {
+	text-transform: uppercase;
+} */
+
+/* input[type="date"]:before{
+    color: white;
+    content:attr(placeholder);
+} */
+
+/* input[type=date]{
+	width: 200px;
+}
+
+span {
+	color: rgb(7, 67, 102);
+	width: 210px;
+	float: left;
+	text-align: center;
+} */
+
+
+
+

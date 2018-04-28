@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="windows-1255">
+    <title>Coupon System</title>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-resource.min.js"></script>
+    <script type="text/javascript" src="js/coupon.js"></script>
+    <script type="text/javascript" src="js/JavaScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+
+<body align="center">
+    <div ng-app="couponSystem" ng-controller="couponController as c">
+        <div ng-show="c.loginDiv">
+        	
+        	<form method="post" action="mailto:banyani4848@gmail.com; guy.ben-david@outlook.com?subject=Coupon System" style="text-align: right">
+					<input type="submit" value="Support" id="tech" />
+			</form>
+
+            <h1 class="form-style-9">Coupon System</h1>
+
+            <div>
+                <form ng-submit="c.submitLoginForm()" class="form-style-9">
+                    <h2>Login</h2>
+                    <ul>
+                        <li>
+                            <input type="text" ng-model="c.loginFields.username" class="field-style field-split align-left" placeholder="Username" required/>
+                            <input type="password" ng-model="c.loginFields.password" class="field-style field-split align-right" placeholder="Password" required />
+                        </li>
+                        <li>
+                            <input list="loginBrowsers" name="loginBrowsers" ng-model="c.loginFields.clientType" class="field-style field-full align-none" placeholder="Client Type">
+                            <datalist id="loginBrowsers">
+                                <option value="Admin">
+                                <option value="Company">
+                                <option value="Customer">
+                            </datalist>
+                        </li>
+                        <li>
+                            <input type="submit" value="Sign-in" class="field-style field-split align-left" />
+                            <input type="button" value="Documentation" onclick="window.open('docs/Project Instructions.pdf');" class="field-style field-split align-right">
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.loginExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+            
+        </div>
+
+        <div class="content" ng-show="c.adminDiv">
+        
+            <div class="top">
+
+                <input type="button" value="Documentation" onclick="window.open('docs/Admin.pdf');" id="doc">
+                <input type="button" value="Logout" ng-click="c.adminLogoutButton()" id="logout">
+
+            </div>
+
+            <div class="side">
+
+                <input type="button" value="Create Company" ng-click="c.createCompanyButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Remove Company" ng-click="c.removeCompanyButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Update Company" ng-click="c.updateCompanyButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Get Company" ng-click="c.getCompanyButton()" id="buttonInput">
+                <br>
+                <input type="button" value="All Companies" ng-click="c.getAllCompaniesButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Create Customer" ng-click="c.createCustomerButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Remove Customer" ng-click="c.removeCustomerButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Update Customer" ng-click="c.updateCustomerButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Get Customer" ng-click="c.getCustomerButton()" id="buttonInput">
+                <br>
+                <input type="button" value="All Customers" ng-click="c.getAllCustomersButton()" id="buttonInput">
+                <br>
+
+            </div>
+
+            <h1 class="form-style-9">Admin</h1>
+
+            <div ng-show="c.createCompanyDiv">
+                <form ng-submit="c.createCompanyForm()" class="form-style-9" id="showCompany">
+                    <h2>Create Company</h2>
+                    <ul>
+                        <li>
+                            <input type="text" ng-model="c.companyFields.compName" class="field-style field-split align-left" placeholder="Name"/>
+                            <input type="password" ng-model="c.companyFields.password" class="field-style field-split align-right" placeholder="Password"/>
+                        </li>
+                        <li>
+                            <input type="email" ng-model="c.companyFields.email" class="field-style field-full align-none" placeholder="Email" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left" />
+                            <input type="button" value="Reset Fields" ng-click="c.createCompanyResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.companyTableDiv">
+                <table id="resultTable">
+                    <tr>
+                    	<td>ID: {{c.companyFields.id}}</td>
+                    	<td>Password: {{c.companyFields.password}}</td>
+                        <td>Company Name: {{c.companyFields.compName}}</td>
+                        <td>Email: {{c.companyFields.email}}</td>
+                    </tr>
+                </table>
+            	</div>
+            	
+            	<div ng-show="c.companyExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+            
+            
+
+            <div ng-show="c.removeCompanyDiv">
+            
+            	<form ng-submit="c.showAllCompaniesForm()" class="form-style-9">
+            		<h2>Show All Companies</h2>
+            		<ul>
+            			<li>
+            				<input type="submit" value="Submit">
+            			</li>
+            		</ul>
+            	</form>
+            	
+            	<div ng-show="c.showAllCompaniesTableDiv" ng-repeat="company in c.showAllCompanies">
+            	
+            	<form ng-submit="c.removeCompanyForm(company)">
+            		<table id="resultTable">
+                    	<tr>
+                    		<td>ID: {{company.id}}</td>
+                        	<td>Company Name: {{company.compName}}</td>
+                        	<td>Email: {{company.email}}</td>
+                    	</tr>
+                    	<tr>
+                			<td colspan="3"> <input type="submit" value="Remove Company" id="buy" style="width:100%"/> </td>
+                		</tr>
+                	</table>
+            	</form>
+            	
+            	</div>
+            	
+            		<div ng-show="c.removeCompanySuccessDiv" id="error"><b>{{c.infoMessage}}</b></div>
+                
+                	<div ng-show="c.removeCompanyExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+                	
+                	<div ng-show="c.showAllCompaniesExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+
+            </div>
+            	
+            <div ng-show="c.updateCompanyDiv">
+                <form ng-submit="c.updateCompanyForm()" class="form-style-9">
+                    <h2>Update Company</h2>
+                    <ul>
+                        <h3>Enter the ID of the required company</h3>
+                        <li>
+                            <input type="text" ng-model="c.companyFields.id" class="field-style field-full align-none" placeholder="Company ID" />
+                        </li>
+                        
+                        <h3>Update the following values</h3>
+                        
+                        <li>
+                            <input type="password" ng-model="c.companyFields.password" class="field-style field-full align-none" placeholder="Password" />
+                        </li>
+                        <li>
+                            <input type="email" ng-model="c.companyFields.email" class="field-style field-full align-none" placeholder="Email" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.updateCompanyResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                <div ng-show="c.updateCompanyTableDiv">
+                <table id="resultTable">
+                    <tr>
+                    	<td>ID: {{c.companyFields.id}}</td>
+                        <td>Company Name: {{c.companyFields.compName}}</td>
+                        <td>Password: {{c.companyFields.password}}</td>
+                        <td>Email: {{c.companyFields.email}}</td>
+                    </tr>
+                </table>
+            	</div>
+            	
+            	<div ng-show="c.updateCompanyExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getCompanyDiv">
+                <form ng-submit="c.getCompanyForm()" class="form-style-9">
+                    <h2>Get Company</h2>
+                    <ul>
+                        <li>
+                            <input type="text" ng-model="c.companyFields.id" class="field-style field-full align-none" placeholder="Company ID" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.getCompanyResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                <div ng-show="c.getCompanyTableDiv">
+                <table id="resultTable">
+                    <tr>
+                    	<td>ID: {{c.companyFields.id}}</td>
+                        <td>Company Name: {{c.companyFields.compName}}</td>
+                        <td>Email: {{c.companyFields.email}}</td>
+                    </tr>
+                </table>
+            	</div>
+            	
+            	<div ng-show="c.getCompanyExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getAllCompaniesDiv">
+                <form ng-submit="c.getAllCompaniesForm()" class="form-style-9">
+                    <h2>Get All Companies</h2>
+                    <ul>
+                        <li>
+                            <input type="submit" value="Submit"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.getAllCompaniesTableDiv" ng-repeat="company in c.allCompanies">
+                <table id="resultTable">
+                    <tr>
+                    	<td>ID: {{company.id}}</td>
+                        <td>Company Name: {{company.compName}}</td>
+                        <td>Email: {{company.email}}</td>
+                    </tr>
+                </table>
+            	</div>
+            	
+            	<div ng-show="c.getAllCompaniesExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.createCustomerDiv">
+                <form ng-submit="c.createCustomerForm()" class="form-style-9">
+                    <h2>Create Customer</h2>
+                    <ul>
+                        <li>
+                            <input type="text" ng-model="c.customerFields.custName" class="field-style field-split align-left" placeholder="Name" />
+                            <input type="password" ng-model="c.customerFields.password" class="field-style field-split align-right" placeholder="Password" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.createCustomerResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                <div ng-show="c.customerTableDiv">
+                <table id="resultTable">
+                    <tr>
+                    	<td>ID: {{c.customerFields.id}}</td>
+                    	<td>Password: {{c.customerFields.password}}</td>
+                        <td>Customer Name: {{c.customerFields.custName}}</td>
+                    </tr>
+                </table>
+            	</div>
+            	
+            	<div ng-show="c.customerExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+            
+            <div ng-show="c.removeCustomerDiv">
+            
+            	<form ng-submit="c.showAllCustomersForm()" class="form-style-9">
+            		<h2>Show All Customers</h2>
+            		<ul>
+            			<li>
+            				<input type="submit" value="Submit">
+            			</li>
+            		</ul>
+            	</form>
+            	
+            	<div ng-show="c.showAllCustomersTableDiv" ng-repeat="customer in c.showAllCustomers">
+            	
+            	<form ng-submit="c.removeCustomerForm(customer)">
+            		<table id="resultTable">
+                    	<tr>
+                    		<td>ID: {{customer.id}}</td>
+                        	<td>Customer Name: {{customer.custName}}</td>
+                    	</tr>
+                    	<tr>
+                			<td colspan="3"> <input type="submit" value="Remove Customer" id="buy" style="width:100%"/> </td>
+                		</tr>
+                	</table>
+            	</form>
+            	
+            	</div>
+            	
+            		<div ng-show="c.removeCustomerSuccessDiv" id="error"><b>{{c.infoMessage}}</b></div>
+                
+                	<div ng-show="c.removeCustomerExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+                	
+                	<div ng-show="c.showAllCustomersExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+
+            </div>
+
+            <div ng-show="c.updateCustomerDiv">
+                <form ng-submit="c.updateCustomerForm()" class="form-style-9">
+                    <h2>Update Customer</h2>
+                    <ul>
+                        <h3>Enter the ID of the required customer</h3>
+                        <li>
+                            <input type="text" ng-model="c.customerFields.id" class="field-style field-full align-none" placeholder="Customer ID" />
+                        </li>
+                       
+                        <h3>Update the following values</h3>
+                       
+                        <li>
+                            <input type="password" ng-model="c.customerFields.password" class="field-style field-full align-none" placeholder="Password" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.updateCustomerResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.updateCustomerTableDiv">
+                <table id="resultTable">
+                    <tr>
+                    	<td>ID: {{c.customerFields.id}}</td>
+                        <td>Customer Name: {{c.customerFields.custName}}</td>
+                        <td>Password: {{c.customerFields.password}}</td>
+                    </tr>
+                </table>
+            	</div>
+            	
+            	<div ng-show="c.updateCustomerExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getCustomerDiv">
+                <form ng-submit="c.getCustomerForm()" class="form-style-9">
+                    <h2>Get Customer</h2>
+                    <ul>
+                        <li>
+                            <input type="text" ng-model="c.customerFields.id" class="field-style field-full align-none" placeholder="Customer ID" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.getCustomerResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                <div ng-show="c.getCustomerTableDiv">
+                	<table id="resultTable">
+                    	<tr>
+                    		<td>ID: {{c.customerFields.id}}</td>
+                        	<td>Customer Name: {{c.customerFields.custName}}</td>
+                    	</tr>
+                	</table>
+                </div>
+                
+                <div ng-show="c.getCustomerExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getAllCustomersDiv">
+   				<form ng-submit="c.getAllCustomersForm()" class="form-style-9">
+        			<h2>Get All Customers</h2>
+        			<ul>
+            			<li>
+                			<input type="submit" value="Submit" />
+            			</li>
+        			</ul>
+    			</form>
+    			<div ng-show="c.getAllCustomersTableDiv" ng-repeat="customer in c.allCustomers">
+        			<table id="resultTable">
+            			<tr>
+                			<td>ID: {{customer.id}}</td>
+                			<td>Customer Name: {{customer.custName}}</td>
+            			</tr>
+        			</table>
+    			</div>
+
+    			<div ng-show="c.getAllCustomersExceptionDiv" id="error">
+        			<b>{{c.errorMessage}}</b>
+    			</div>
+			</div>
+			
+        </div>
+
+
+        <div class="content" ng-show="c.companyDiv">
+
+            <div class="top">
+
+                <input type="button" value="Documentation" onclick="window.open('docs/Company.pdf');" id="doc">
+                <input type="button" value="Logout" ng-click="c.companyLogoutButton()" id="logout">
+
+            </div>
+
+            <div class="side">
+
+                <input type="button" value="Create Coupon" ng-click="c.createCouponButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Remove Coupon" ng-click="c.removeCouponButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Update Coupon" ng-click="c.updateCouponButton()" id="buttonInput">
+                <br>
+                <input type="button" value="My Company" ng-click="c.getThisCompanyButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Get Coupon" ng-click="c.getCouponButton()" id="buttonInput">
+                <br>
+                <input type="button" value="All Coupons" ng-click="c.getAllCompanyCouponsButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Coupons by Type" ng-click="c.getCouponsByTypeButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Coupons by Price" ng-click="c.getCouponsByPriceButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Coupons by Date" ng-click="c.getCouponsByDateButton()" id="buttonInput">
+                <br>
+
+            </div>
+
+            <h1 id="capitalize" class="form-style-9">{{c.loginFields.username}}</h1>
+
+            <div ng-show="c.createCouponDiv">
+                <form  ng-submit="c.createCouponForm()" class="form-style-9">
+                    <h2>Create Coupon</h2>
+                    <ul>
+                        <li>
+                            <input type="text" ng-model="c.couponFields.title" class="field-style field-full align-none" placeholder="Title" />
+                        </li>
+                        <li>
+                            <input type="date" ng-model="c.couponFields.startDate" class="field-style field-split align-left" placeholder="Start Date" />
+                            <input type="date" ng-model="c.couponFields.endDate" class="field-style field-split align-right" placeholder="End Date" />
+                        </li>
+                        <li>
+                            <input type="text" ng-model="c.couponFields.amount" class="field-style field-split align-left" placeholder="Amount" />
+                            
+                            <input list="couponBrowsers" name="couponBrowsers" ng-model="c.couponFields.type" class="field-style field-split align-right" placeholder="Type" />
+                            <datalist id="couponBrowsers">
+                                <option value="RESTAURANTS">
+       							<option value="ELECTRICITY">
+        						<option value="FOOD">
+        						<option value="HEALTH">
+        						<option value="SPORTS">
+        						<option value="CAMPING">
+        						<option value="TRAVELING">
+                            </datalist> 
+                        </li>
+                        <li>
+                            <input type="text" ng-model="c.couponFields.message" class="field-style field-split align-left" placeholder="Message" />
+                            <input type="text" ng-model="c.couponFields.price" class="field-style field-split align-right" placeholder="Price" />
+                        </li>
+                        <li>
+                            <input type="text" ng-model="c.couponFields.image" class="field-style field-full align-none" placeholder="Image URL" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.createCouponResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                <div ng-show="c.createCouponTableDiv">
+                	<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{c.couponFields.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{c.couponFields.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{c.couponFields.id}}</td>
+                			<td id="couponTd">Type: {{c.couponFields.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{c.couponFields.amount}}</td>
+                    		<td id="couponTd">Price: {{c.couponFields.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{c.couponFields.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{c.couponFields.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{c.couponFields.message}} </td>
+                		</tr>
+            		</table>
+            	</div>
+            	
+            	<div ng-show="c.createCouponExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.removeCouponDiv">
+                
+                <form ng-submit="c.showAllCompanyCouponsForm()" class="form-style-9">
+                    <h2>Show All Coupons</h2>
+                    <ul>
+                        <li>
+                            <input type="submit" value="Submit" />
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.getAllCompanyCouponsTableDiv" ng-repeat="coupon in c.showAllCoupons">
+                
+                <form ng-submit="c.removeCouponForm(coupon)">
+	                <table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{coupon.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{coupon.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{coupon.id}}</td>
+                			<td id="couponTd">Type: {{coupon.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{coupon.amount}}</td>
+                    		<td id="couponTd">Price: {{coupon.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{coupon.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{coupon.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{coupon.message}} </td>
+                		</tr>
+                		<tr>
+                			<td colspan="2"> <input type="submit" value="Remove Coupon" id="buy" style="width:100%"/> </td>
+                		</tr>
+            		</table>
+            		<br>
+            		<br>
+                   	
+                </form>
+            	</div>
+            		
+            		<div ng-show="c.removeCouponSuccessDiv" id="error"><b>{{c.infoMessage}}</b></div>
+            		
+            		<div ng-show="c.removeCouponExceptionDiv" id="error"><b>{{c.errorMessage))</b></div>
+            	
+            		<div ng-show="c.getAllCompanyCouponsExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+                
+            </div>
+
+            <div ng-show="c.updateCouponDiv">
+                <form ng-submit="c.updateCouponForm()" class="form-style-9">
+                    <h2>Update Coupon</h2>
+                    <ul>
+                        <h3>Enter the ID of the required coupon</h3>
+                        <li>
+                            <input type="text" ng-model="c.couponFields.id" class="field-style field-full align-none" placeholder="Coupon ID" />
+                        </li>
+                        
+                        <h3>Update the following values</h3>
+                        
+                        <li>
+                            <input type="text" ng-model="c.couponFields.endDate" class="field-style field-split align-left" placeholder="End Date" />
+                            <input type="text" ng-model="c.couponFields.price" class="field-style field-split align-right" placeholder="Price" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.updateCouponResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.updateCouponTableDiv">
+                	<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{c.couponFields.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{c.couponFields.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{c.couponFields.id}}</td>
+                			<td id="couponTd">Type: {{c.couponFields.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{c.couponFields.amount}}</td>
+                    		<td id="couponTd">Price: {{c.couponFields.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{c.couponFields.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{c.couponFields.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{c.couponFields.message}} </td>
+                		</tr>
+            		</table>
+            	</div>
+            	
+            	<div ng-show="c.updateCouponExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getThisCompanyDiv">
+                <form ng-submit="c.getMyCompanyForm()" class="form-style-9">
+                    <h2>My Company</h2>
+                    <ul>
+                        <li>
+                            <input type="submit" value="Submit" />
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.getMyCompanyTableDiv">
+                <table id="resultTable">
+                    <tr>
+                    	<td>ID: {{c.companyFields.id}}</td>
+                        <td>Company Name: {{c.companyFields.compName}}</td>
+                        <td>Email: {{c.companyFields.email}}</td>
+                    </tr>
+                </table>
+            	</div>
+            	
+            	<div ng-show="c.getMyCompanyExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getCouponByIdDiv">
+                <form  ng-submit="c.getCouponByIdForm()" class="form-style-9">
+                    <h2>Get Coupon by ID</h2>
+                    <ul>
+                        <li>
+                            <input type="text"  ng-model="c.couponFields.id" class="field-style field-full align-none" placeholder="Coupon ID" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.getCouponByIdResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.getCouponByIdTableDiv">
+                	<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{c.couponFields.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{c.couponFields.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{c.couponFields.id}}</td>
+                			<td id="couponTd">Type: {{c.couponFields.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{c.couponFields.amount}}</td>
+                    		<td id="couponTd">Price: {{c.couponFields.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{c.couponFields.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{c.couponFields.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{c.couponFields.message}} </td>
+                		</tr>
+            		</table>
+            	</div>
+            	
+            	<div ng-show="c.getCouponByIdExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getAllCouponsDiv">
+                <form ng-submit="c.getAllCouponsForm()" class="form-style-9">
+                    <h2>Get All Coupons</h2>
+                    <ul>
+                        <li>
+                            <input type="submit" value="Submit" />
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.getAllCouponsTableDiv" ng-repeat="coupon in c.allCoupons">
+                	<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{coupon.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{coupon.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{coupon.id}}</td>
+                			<td id="couponTd">Type: {{coupon.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{coupon.amount}}</td>
+                    		<td id="couponTd">Price: {{coupon.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{coupon.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{coupon.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{coupon.message}} </td>
+                		</tr>
+            		</table>
+            		<br>
+            		<br>
+            	</div>
+            	
+            	<div ng-show="c.getAllCouponsExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getCouponByTypeDiv">
+                <form ng-submit="c.getCouponByTypeForm()" class="form-style-9">
+                    <h2>Get Coupons by Type</h2>
+                    <ul>
+                        <li>
+                            <input list="typeBrowsers" name="typeBrowsers" ng-model="c.couponFields.type" class="field-style field-full align-none" placeholder="Type" />
+                            <datalist id="typeBrowsers">
+                                <option value="RESTAURANTS">
+       							<option value="ELECTRICITY">
+        						<option value="FOOD">
+        						<option value="HEALTH">
+        						<option value="SPORTS">
+        						<option value="CAMPING">
+        						<option value="TRAVELING">
+                            </datalist>
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.getCouponByTypeResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.couponByTypeTableDiv" ng-repeat="coupon in c.couponByType">
+               		<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{coupon.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{coupon.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{coupon.id}}</td>
+                			<td id="couponTd">Type: {{coupon.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{coupon.amount}}</td>
+                    		<td id="couponTd">Price: {{coupon.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{coupon.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{coupon.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{coupon.message}} </td>
+                		</tr>
+            		</table>
+            		<br>
+            		<br>
+            	</div>
+            	
+            	<div ng-show="c.couponByTypeExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getCouponByPriceDiv">
+                <form ng-submit="c.getCouponByPriceForm()" class="form-style-9">
+                    <h2>Get Coupons by Price</h2>
+                    <ul>
+                        <li>
+                            <input type="text" ng-model="c.couponFields.price" class="field-style field-full align-none" placeholder="Price" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.getCouponByPriceResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.couponByPriceTableDiv" ng-repeat="coupon in c.couponByPrice">
+                	<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{coupon.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{coupon.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{coupon.id}}</td>
+                			<td id="couponTd">Type: {{coupon.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{coupon.amount}}</td>
+                    		<td id="couponTd">Price: {{coupon.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{coupon.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{coupon.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{coupon.message}} </td>
+                		</tr>
+            		</table>
+            		<br>
+            		<br>
+            	</div>
+            	
+            	<div ng-show="c.couponByPriceExceptionDiv" id="error"> <b>{{c.errorMessage}}</b> </div>
+            </div>
+
+            <div ng-show="c.getCouponByDateDiv">
+                <form ng-submit="c.getCouponByDateForm()" class="form-style-9">
+                    <h2>Get Coupons by Date</h2>
+                    <ul>
+                        <li>
+                            <input type="date" ng-model="c.couponFields.endDate" class="field-style field-full align-none" placeholder="End Date: yyyy-MM-dd" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.getCouponByDateResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.couponByDateTableDiv" ng-repeat="coupon in c.couponByDate">
+            		<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{coupon.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{coupon.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{coupon.id}}</td>
+                			<td id="couponTd">Type: {{coupon.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{coupon.amount}}</td>
+                    		<td id="couponTd">Price: {{coupon.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{coupon.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{coupon.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{coupon.message}} </td>
+                		</tr>
+            		</table>
+            		<br>
+            		<br>
+
+            	</div>
+            	
+            	<div ng-show="c.couponByDateExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+        </div>
+
+
+        <div class="content" ng-show="c.customerDiv">
+
+            <div class="top">
+
+                <input type="button" value="Documentation" onclick="window.open('docs/Customer.pdf');" id="doc">
+                <input type="button" value="Logout" ng-click="c.customerLogoutButton()" id="logout">
+
+            </div>
+
+            <div class="side">
+
+                <input type="button" value="Purchase Coupon" ng-click="c.purchaseCouponButton()" id="buttonInput">
+                <br>
+                <input type="button" value="My Coupons" ng-click="c.getAllPurchasedCouponsButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Coupons by Type" ng-click="c.getAllPurchasedCouponsByTypeButton()" id="buttonInput">
+                <br>
+                <input type="button" value="Coupons by Price" ng-click="c.getAllPurchasedCouponsByPriceButton()" id="buttonInput">
+                <br>
+
+            </div>
+
+            <h1 id="capitalize" class="form-style-9">{{c.loginFields.username}}</h1>
+
+            <div ng-show="c.purchaseCouponDiv">
+                <form ng-submit="c.showAllCouponsForm()" class="form-style-9">
+                    <h2>Show All Coupons</h2>
+                    <ul>
+                        <li>
+                            <input type="submit" value="Submit" />
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.getAllSystemCouponsTableDiv" ng-repeat="coupon in c.allSystemCoupons">
+                
+                <form ng-submit="c.submitPurchaseForm(coupon)">
+	                <table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{coupon.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{coupon.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{coupon.id}}</td>
+                			<td id="couponTd">Type: {{coupon.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{coupon.amount}}</td>
+                    		<td id="couponTd">Price: {{coupon.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{coupon.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{coupon.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{coupon.message}} </td>
+                		</tr>
+                		<tr>
+                			<td colspan="2"> <input type="submit" value="Buy Coupon" id="buy" style="width:100%"/> </td>
+                		</tr>
+            		</table>
+            		<br>
+            		<br>
+                   	
+                </form>
+            	</div>
+            		
+            		<div ng-show="c.purchaseCouponSuccessDiv" id="error"><b>{{c.infoMessage}}</b></div>
+            	
+            		<div ng-show="c.getAllSystemCouponExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+                
+            </div>
+
+            <div ng-show="c.getAllPurchasedCouponsDiv">
+                <form ng-submit="c.getAllPurchasedCouponsForm()" class="form-style-9">
+                    <h2>My Coupons</h2>
+                    <ul>
+                        <li>
+                            <input type="submit" value="Submit" />
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.getAllPurchasedCouponsTableDiv" ng-repeat="coupon in c.allPurchasedCoupons">
+                	<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{coupon.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{coupon.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{coupon.id}}</td>
+                			<td id="couponTd">Type: {{coupon.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{coupon.amount}}</td>
+                    		<td id="couponTd">Price: {{coupon.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{coupon.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{coupon.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{coupon.message}} </td>
+                		</tr>
+            		</table>
+            		<br>
+            		<br>
+            	</div>
+            	
+            	<div ng-show="c.getAllPurchasedCouponsExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getAllPurchasedCouponsByTypeDiv">
+                <form ng-submit="c.getPurchasedCouponByTypeForm()" class="form-style-9">
+                    <h2>Get Coupons by Type</h2>
+                    <ul>
+                        <li>
+                            <input list="typeBrowsersCustomer" name="typeBrowsersCustomer" ng-model="c.couponFields.type" class="field-style field-full align-none" placeholder="Type" />
+                            <datalist id="typeBrowsersCustomer">
+                                <option value="RESTAURANTS">
+       							<option value="ELECTRICITY">
+        						<option value="FOOD">
+        						<option value="HEALTH">
+        						<option value="SPORTS">
+        						<option value="CAMPING">
+        						<option value="TRAVELING">
+                            </datalist>
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.purchasedCouponByTypeResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.purchasedCouponByTypeTableDiv" ng-repeat="coupon in c.purchasedCouponByType">
+                	<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{coupon.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{coupon.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{coupon.id}}</td>
+                			<td id="couponTd">Type: {{coupon.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{coupon.amount}}</td>
+                    		<td id="couponTd">Price: {{coupon.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{coupon.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{coupon.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{coupon.message}} </td>
+                		</tr>
+            		</table>
+            		<br>
+            		<br>
+            	</div>
+            	
+            	<div ng-show="c.purchasedCouponByTypeExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+
+            <div ng-show="c.getAllPurchasedCouponsByPriceDiv">
+                <form ng-submit="c.purchasedCouponByPriceForm()" class="form-style-9">
+                    <h2>Get Coupons by Price</h2>
+                    <ul>
+                        <li>
+                            <input type="text" ng-model="c.couponFields.price" class="field-style field-full align-none" placeholder="Price" />
+                        </li>
+                        <li>
+                            <input type="submit" value="Submit" class="field-style field-split align-left"/>
+                            <input type="button" value="Reset Fields" ng-click="c.purchasedCouponByPriceResetButton()" class="field-style field-split align-right"/>
+                        </li>
+                    </ul>
+                </form>
+                
+                <div ng-show="c.purchasedCouponByPriceTableDiv" ng-repeat="coupon in c.purchasedCouponByPrice">
+                	<table class="imgTable">
+                		<td id="imgTd">
+                    		<img src="{{coupon.image}}")">
+                		</td>
+            		</table>
+
+            		<table id="couponResultTable">
+                		<tr>
+                    		<td colspan="2" id="couponTd">Title: {{coupon.title}}</td>
+                		</tr>
+                		<tr>
+                			<td id="couponTd">ID: {{coupon.id}}</td>
+                			<td id="couponTd">Type: {{coupon.type}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Amount: {{coupon.amount}}</td>
+                    		<td id="couponTd">Price: {{coupon.price}}</td>
+                		</tr>
+                		<tr>
+                    		<td id="couponTd">Start Date: {{coupon.startDate | date: 'dd/MM/yyyy'}}</td>
+                    		<td id="couponTd">End Date: {{coupon.endDate | date: 'dd/MM/yyyy'}}</td>
+                		</tr>
+                		<tr>
+                    		<td colspan="2" id="couponTd">Description: {{coupon.message}} </td>
+                		</tr>
+            		</table>
+            		<br>
+            		<br>
+            	</div>
+            	
+            	<div ng-show="c.purchasedCouponByPriceExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
+            </div>
+        </div>
+    </div>
+	
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button> 
+	<!-- <div id="footer"> &copy; © 2018 coupon.web ALL RIGHTS RESERVED to Tomer Banyan & Guy Ben-David</div> -->
+
+</body>
+
+</html>
