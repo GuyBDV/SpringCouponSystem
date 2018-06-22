@@ -104,14 +104,16 @@
                 </form>
                 
                 <div ng-show="c.companyTableDiv">
-                <table id="resultTable">
-                    <tr>
-                    	<td>ID: {{c.companyFields.id}}</td>
-                    	<td>Password: {{c.companyFields.password}}</td>
-                        <td>Company Name: {{c.companyFields.compName}}</td>
-                        <td>Email: {{c.companyFields.email}}</td>
-                    </tr>
-                </table>
+                	<table class="imgTable">
+						<td>Company Name: {{c.companyFields.compName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{c.companyFields.id}}</td>
+							<td id="couponTd">Email: {{c.companyFields.email}}</td>
+						</tr>
+					</table>
             	</div>
             	
             	<div ng-show="c.companyExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
@@ -133,16 +135,21 @@
             	<div ng-show="c.showAllCompaniesTableDiv" ng-repeat="company in c.showAllCompanies">
             	
             	<form ng-submit="c.removeCompanyForm(company)">
-            		<table id="resultTable">
-                    	<tr>
-                    		<td>ID: {{company.id}}</td>
-                        	<td>Company Name: {{company.compName}}</td>
-                        	<td>Email: {{company.email}}</td>
-                    	</tr>
-                    	<tr>
-                			<td colspan="3"> <input type="submit" value="Remove Company" id="buy" style="width:100%"/> </td>
+            		<table class="imgTable">
+						<td>Company Name: {{company.compName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{company.id}}</td>
+							<td id="couponTd">Email: {{company.email}}</td>
+						</tr>
+						<tr>
+                			<td colspan="2"> <input type="submit" value="Remove Company" id="buy" style="width:100%"/> </td>
                 		</tr>
-                	</table>
+					</table>
+					<br>
+					<br>
             	</form>
             	
             	</div>
@@ -179,14 +186,17 @@
                     </ul>
                 </form>
                 <div ng-show="c.updateCompanyTableDiv">
-                <table id="resultTable">
-                    <tr>
-                    	<td>ID: {{c.companyFields.id}}</td>
-                        <td>Company Name: {{c.companyFields.compName}}</td>
-                        <td>Password: {{c.companyFields.password}}</td>
-                        <td>Email: {{c.companyFields.email}}</td>
-                    </tr>
-                </table>
+                	<table class="imgTable">
+						<td>Company Name: {{c.companyFields.compName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{c.companyFields.id}}</td>
+							<td id="couponTd">Password: {{c.companyFields.password}}</td>
+							<td id="couponTd">Email: {{c.companyFields.email}}</td>
+						</tr>
+					</table>
             	</div>
             	
             	<div ng-show="c.updateCompanyExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
@@ -206,13 +216,16 @@
                     </ul>
                 </form>
                 <div ng-show="c.getCompanyTableDiv">
-                <table id="resultTable">
-                    <tr>
-                    	<td>ID: {{c.companyFields.id}}</td>
-                        <td>Company Name: {{c.companyFields.compName}}</td>
-                        <td>Email: {{c.companyFields.email}}</td>
-                    </tr>
-                </table>
+               		<table class="imgTable">
+						<td>Company Name: {{c.companyFields.compName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{c.companyFields.id}}</td>
+							<td id="couponTd">Email: {{c.companyFields.email}}</td>
+						</tr>
+					</table>
             	</div>
             	
             	<div ng-show="c.getCompanyExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
@@ -229,13 +242,18 @@
                 </form>
                 
                 <div ng-show="c.getAllCompaniesTableDiv" ng-repeat="company in c.allCompanies">
-                <table id="resultTable">
-                    <tr>
-                    	<td>ID: {{company.id}}</td>
-                        <td>Company Name: {{company.compName}}</td>
-                        <td>Email: {{company.email}}</td>
-                    </tr>
-                </table>
+                	<table class="imgTable">
+						<td>Company Name: {{company.compName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{company.id}}</td>
+							<td id="couponTd">Email: {{company.email}}</td>
+						</tr>
+					</table>
+					<br>
+					<br>
             	</div>
             	
             	<div ng-show="c.getAllCompaniesExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
@@ -256,13 +274,16 @@
                     </ul>
                 </form>
                 <div ng-show="c.customerTableDiv">
-                <table id="resultTable">
-                    <tr>
-                    	<td>ID: {{c.customerFields.id}}</td>
-                    	<td>Password: {{c.customerFields.password}}</td>
-                        <td>Customer Name: {{c.customerFields.custName}}</td>
-                    </tr>
-                </table>
+                	<table class="imgTable">
+						<td>Customer Name: {{c.customerFields.custName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{c.customerFields.id}}</td>
+							<td id="couponTd">Password: {{c.customerFields.password}}</td>
+						</tr>
+					</table>
             	</div>
             	
             	<div ng-show="c.customerExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
@@ -282,15 +303,20 @@
             	<div ng-show="c.showAllCustomersTableDiv" ng-repeat="customer in c.showAllCustomers">
             	
             	<form ng-submit="c.removeCustomerForm(customer)">
-            		<table id="resultTable">
-                    	<tr>
-                    		<td>ID: {{customer.id}}</td>
-                        	<td>Customer Name: {{customer.custName}}</td>
-                    	</tr>
-                    	<tr>
-                			<td colspan="3"> <input type="submit" value="Remove Customer" id="buy" style="width:100%"/> </td>
+            		<table class="imgTable">
+						<td>Customer Name: {{customer.custName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{customer.id}}</td>
+						</tr>
+						<tr>
+                			<td colspan="2"> <input type="submit" value="Remove Customer" id="buy" style="width:100%"/> </td>
                 		</tr>
-                	</table>
+					</table>
+					<br>
+					<br>
             	</form>
             	
             	</div>
@@ -325,13 +351,16 @@
                 </form>
                 
                 <div ng-show="c.updateCustomerTableDiv">
-                <table id="resultTable">
-                    <tr>
-                    	<td>ID: {{c.customerFields.id}}</td>
-                        <td>Customer Name: {{c.customerFields.custName}}</td>
-                        <td>Password: {{c.customerFields.password}}</td>
-                    </tr>
-                </table>
+                <table class="imgTable">
+						<td>Customer Name: {{c.customerFields.custName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{c.customerFields.id}}</td>
+							<td id="couponTd">Password: {{c.customerFields.password}}</td>
+						</tr>
+					</table>
             	</div>
             	
             	<div ng-show="c.updateCustomerExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
@@ -351,12 +380,15 @@
                     </ul>
                 </form>
                 <div ng-show="c.getCustomerTableDiv">
-                	<table id="resultTable">
-                    	<tr>
-                    		<td>ID: {{c.customerFields.id}}</td>
-                        	<td>Customer Name: {{c.customerFields.custName}}</td>
-                    	</tr>
-                	</table>
+                	<table class="imgTable">
+						<td>Customer Name: {{c.customerFields.custName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{c.customerFields.id}}</td>
+						</tr>
+					</table>
                 </div>
                 
                 <div ng-show="c.getCustomerExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
@@ -372,12 +404,17 @@
         			</ul>
     			</form>
     			<div ng-show="c.getAllCustomersTableDiv" ng-repeat="customer in c.allCustomers">
-        			<table id="resultTable">
-            			<tr>
-                			<td>ID: {{customer.id}}</td>
-                			<td>Customer Name: {{customer.custName}}</td>
-            			</tr>
-        			</table>
+        			<table class="imgTable">
+						<td>Customer Name: {{customer.custName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{customer.id}}</td>
+						</tr>
+					</table>
+					<br>
+					<br>
     			</div>
 
     			<div ng-show="c.getAllCustomersExceptionDiv" id="error">
@@ -614,13 +651,16 @@
                 </form>
                 
                 <div ng-show="c.getMyCompanyTableDiv">
-                <table id="resultTable">
-                    <tr>
-                    	<td>ID: {{c.companyFields.id}}</td>
-                        <td>Company Name: {{c.companyFields.compName}}</td>
-                        <td>Email: {{c.companyFields.email}}</td>
-                    </tr>
-                </table>
+                <table class="imgTable">
+						<td>Company Name: {{c.companyFields.compName}}</td>
+					</table>
+
+					<table id="couponResultTable">
+						<tr>
+							<td id="couponTd">ID: {{c.companyFields.id}}</td>
+							<td id="couponTd">Email: {{c.companyFields.email}}</td>
+						</tr>
+					</table>
             	</div>
             	
             	<div ng-show="c.getMyCompanyExceptionDiv" id="error"><b>{{c.errorMessage}}</b></div>
@@ -1102,7 +1142,6 @@
     </div>
 	
 	<button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button> 
-	<!-- <div id="footer"> &copy; © 2018 coupon.web ALL RIGHTS RESERVED to Tomer Banyan & Guy Ben-David</div> -->
 
 </body>
 
